@@ -43,6 +43,39 @@
       const categories = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
       const basePoints = [
+        { x: 2, y: 7 },
+        { x: 2, y: 7 },
+        { x: 2, y: 7 },
+        { x: 2, y: 7 },
+        { x: 2, y: 7 },
+        { x: 2, y: 7 },
+        { x: 2, y: 7 },
+        { x: 2, y: 7 },
+        { x: 2, y: 7 },
+        { x: 2, y: 7 },
+        { x: 2, y: 7 },
+        { x: 1, y: 7 },
+        { x: 1, y: 7 },
+        { x: 1, y: 7 },
+        { x: 1, y: 7 },
+        { x: 1, y: 7 },
+        { x: 1, y: 7 },
+        { x: 1, y: 7 },
+        { x: 1, y: 7 },
+        { x: 1, y: 7 },
+        { x: 1, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
+        { x: 0, y: 7 },
         { x: 2, y: 3 },
         { x: 2, y: 3 },
         { x: 2, y: 3 },
@@ -61,6 +94,31 @@
         { x: 5, y: 7 },
         { x: 5, y: 7 },
         { x: 1, y: 8 },
+        { x: 1, y: 8 },
+        { x: 1, y: 8 },
+        { x: 1, y: 8 },
+        { x: 1, y: 8 },
+        { x: 1, y: 8 },
+        { x: 0, y: 8 },
+        { x: 0, y: 8 },
+        { x: 0, y: 8 },
+        { x: 0, y: 8 },
+        { x: 0, y: 8 },
+        { x: 0, y: 8 },
+        { x: 0, y: 8 },
+
+        { x: 0, y: 8 },
+        { x: 2, y: 8 },
+        { x: 2, y: 8 },
+        { x: 2, y: 8 },
+        { x: 2, y: 8 },
+        { x: 2, y: 8 },
+        { x: 2, y: 8 },
+        { x: 2, y: 8 },
+        { x: 2, y: 8 },
+        { x: 2, y: 8 },
+        { x: 1, y: 8 },
+        { x: 6, y: 2 },
         { x: 6, y: 2 },
         { x: 4, y: 4 },
         { x: 7, y: 1 },
@@ -69,6 +127,11 @@
         { x: 7, y: 1 },
         { x: 7, y: 1 },
         { x: 8, y: 6 },
+        { x: 3, y: 5 },
+        { x: 3, y: 5 },
+        { x: 3, y: 5 },
+        { x: 3, y: 5 },
+        { x: 3, y: 5 },
         { x: 3, y: 5 },
         { x: 0, y: 0 },
         { x: 8, y: 8 },
@@ -93,6 +156,337 @@
       Object.values(cellGroups).forEach((group) => {
         const count = group.names.length;
 
+        switch (count) {
+          case 1:
+            jitteredPoints.push({
+              name: group.names[0],
+              x: group.x,
+              y: group.y,
+            });
+            break;
+          case 2:
+            const die2Offsets = [
+              { col: 0, row: 2 }, // top-left
+              { col: 2, row: 0 }, // bottom-right
+            ];
+
+            die2Offsets.forEach((pos, i) => {
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((pos.col + 0.5) * (cellSize - 2 * padding)) / 3,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((pos.row + 0.5) * (cellSize - 2 * padding)) / 3,
+              });
+            });
+            break;
+
+          case 3:
+            const die3Offsets = [
+              { col: 0, row: 0 }, // bottom-left
+              { col: 1, row: 1 }, // center
+              { col: 2, row: 2 }, // top-right
+            ];
+
+            die3Offsets.forEach((pos, i) => {
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((pos.col + 0.5) * (cellSize - 2 * padding)) / 3,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((pos.row + 0.5) * (cellSize - 2 * padding)) / 3,
+              });
+            });
+            break;
+          case 4:
+            const die4Offsets = [
+              { col: 0, row: 0 }, // top-left
+              { col: 2, row: 0 }, // top-right
+              { col: 0, row: 2 }, // bottom-left
+              { col: 2, row: 2 }, // bottom-right
+            ];
+
+            die4Offsets.forEach((pos, i) => {
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((pos.col + 0.5) * (cellSize - 2 * padding)) / 3,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((pos.row + 0.5) * (cellSize - 2 * padding)) / 3,
+              });
+            });
+            break;
+
+          case 5:
+            const die5Offsets = [
+              { col: 0, row: 0 }, // top-left
+              { col: 2, row: 0 }, // top-right
+              { col: 1, row: 1 }, // center
+              { col: 0, row: 2 }, // bottom-left
+              { col: 2, row: 2 }, // bottom-right
+            ];
+
+            die5Offsets.forEach((pos, i) => {
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((pos.col + 0.5) * (cellSize - 2 * padding)) / 3,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((pos.row + 0.5) * (cellSize - 2 * padding)) / 3,
+              });
+            });
+            break;
+          case 6:
+            const die6Offsets = [
+              { col: 0, row: 0 }, // bottom-left
+              { col: 0, row: 1 },
+              { col: 0, row: 2 }, // top-left
+              { col: 2, row: 0 }, // bottom-right
+              { col: 2, row: 1 },
+              { col: 2, row: 2 }, // top-right
+            ];
+
+            die6Offsets.forEach((pos, i) => {
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((pos.col + 0.5) * (cellSize - 2 * padding)) / 3,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((pos.row + 0.5) * (cellSize - 2 * padding)) / 3,
+              });
+            });
+            break;
+
+          case 7:
+            const die7OffsetsRotated = [
+              { col: 0, row: 0 }, // becomes bottom-left → col=0, row=2
+              { col: 0, row: 2 }, // becomes top-left → col=2, row=2
+              { col: 1, row: 0 }, // becomes bottom-center
+              { col: 1, row: 2 }, // becomes top-center
+              { col: 2, row: 0 }, // becomes bottom-right
+              { col: 2, row: 2 }, // becomes top-right
+              { col: 1, row: 1 }, // center stays center
+            ];
+
+            die7OffsetsRotated.forEach((pos, i) => {
+              // Swap col and row, invert row for 90° clockwise rotation
+              const rotatedCol = pos.row;
+              const rotatedRow = 2 - pos.col;
+
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((rotatedCol + 0.5) * (cellSize - 2 * padding)) / 3,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((rotatedRow + 0.5) * (cellSize - 2 * padding)) / 3,
+              });
+            });
+            break;
+          case 8:
+            const die8Offsets = [
+              { col: 0, row: 0 }, // top-left
+              { col: 1, row: 0 }, // top-center
+              { col: 2, row: 0 }, // top-right
+              { col: 0, row: 1 }, // mid-left
+              { col: 2, row: 1 }, // mid-right
+              { col: 0, row: 2 }, // bottom-left
+              { col: 1, row: 2 }, // bottom-center
+              { col: 2, row: 2 }, // bottom-right
+            ];
+
+            die8Offsets.forEach((pos, i) => {
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((pos.col + 0.5) * (cellSize - 2 * padding)) / 3,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((pos.row + 0.5) * (cellSize - 2 * padding)) / 3,
+              });
+            });
+            break;
+
+          case 9:
+            for (let row = 0; row < 3; row++) {
+              for (let col = 0; col < 3; col++) {
+                const i = row * 3 + col;
+                if (i < count) {
+                  jitteredPoints.push({
+                    name: group.names[i],
+                    x:
+                      group.x -
+                      0.5 +
+                      padding +
+                      ((col + 0.5) * (cellSize - 2 * padding)) / 3,
+                    y:
+                      group.y -
+                      0.5 +
+                      padding +
+                      ((row + 0.5) * (cellSize - 2 * padding)) / 3,
+                  });
+                }
+              }
+            }
+            break;
+          case 10:
+            const positions10 = [
+              [0, 0],
+              [2, 0],
+              [4, 0],
+              [0, 1],
+              [4, 1],
+              [0, 2],
+              [4, 2],
+              [0, 3],
+              [2, 3],
+              [4, 3],
+            ];
+
+            for (let i = 0; i < count && i < positions10.length; i++) {
+              const [col, row] = positions10[i];
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((col + 0.5) * (cellSize - 2 * padding)) / 5,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((row + 0.5) * (cellSize - 2 * padding)) / 4,
+              });
+            }
+            break;
+
+          case 11:
+            const positions11 = [
+              [0, 0],
+              [2, 0],
+              [4, 0],
+              [0, 1],
+              [4, 1],
+              [2, 1.5],
+              [0, 2],
+              [4, 2],
+              [0, 3],
+              [2, 3],
+              [4, 3],
+            ];
+
+            for (let i = 0; i < count && i < positions11.length; i++) {
+              const [col, row] = positions11[i];
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((col + 0.5) * (cellSize - 2 * padding)) / 5,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((row + 0.5) * (cellSize - 2 * padding)) / 4,
+              });
+            }
+            break;
+
+          case 12:
+            const positions12 = [
+              [0, 0],
+              [2, 0],
+              [4, 0],
+              [0, 1],
+              [2, 1],
+              [4, 1],
+              [0, 2],
+              [2, 2],
+              [4, 2],
+              [0, 3],
+              [2, 3],
+              [4, 3],
+            ];
+
+            for (let i = 0; i < count && i < positions12.length; i++) {
+              const [col, row] = positions12[i];
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((col + 0.5) * (cellSize - 2 * padding)) / 5,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((row + 0.5) * (cellSize - 2 * padding)) / 4,
+              });
+            }
+            break;
+
+          default:
+            const gridCols = Math.ceil(Math.sqrt(count));
+            const gridRows = Math.ceil(count / gridCols);
+            const spacingX = (cellSize - 2 * padding) / gridCols;
+            const spacingY = (cellSize - 2 * padding) / gridRows;
+
+            for (let i = 0; i < count; i++) {
+              const col = i % gridCols;
+              const row = Math.floor(i / gridCols);
+
+              jitteredPoints.push({
+                name: group.names[i],
+                x: group.x - 0.5 + padding + (col + 0.5) * spacingX,
+                y: group.y - 0.5 + padding + (row + 0.5) * spacingY,
+              });
+            }
+        }
+
+        /*
         if (count === 1) {
           jitteredPoints.push({
             name: group.names[0],
@@ -116,6 +510,7 @@
             });
           }
         }
+        */
       });
 
       const backgroundCells = [];
@@ -163,7 +558,7 @@
         {
           chart: {
             type: "scatter",
-            zoomType: "xy",
+            zoomType: null,
             // width: 800,
             // height: 800,
 
@@ -184,7 +579,7 @@
                     .text(q.name, 0, 0) // initial dummy pos
                     .css({
                       color: "#555",
-                      fontSize: "20px",
+                      fontSize: "35px",
                       fontWeight: "bold",
                       textAlign: "center",
                     })
