@@ -79,7 +79,7 @@
         { x: 2, y: 3 },
         { x: 2, y: 3 },
         { x: 2, y: 3 },
-        { x: 5, y: 7 },
+
         { x: 5, y: 7 },
         { x: 5, y: 7 },
         { x: 5, y: 7 },
@@ -139,6 +139,21 @@
         { x: 8, y: 8 },
         { x: 8, y: 8 },
         { x: 1, y: 6 },
+
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
+        { x: 1, y: 1 },
       ];
 
       // Group items by cell
@@ -321,12 +336,12 @@
           case 8:
             const die8Offsets = [
               { col: 0, row: 0 }, // top-left
-              { col: 1, row: 0 }, // top-center
+              { col: 1, row: 0.5 }, // top-center
               { col: 2, row: 0 }, // top-right
               { col: 0, row: 1 }, // mid-left
               { col: 2, row: 1 }, // mid-right
               { col: 0, row: 2 }, // bottom-left
-              { col: 1, row: 2 }, // bottom-center
+              { col: 1, row: 1.5 }, // bottom-center
               { col: 2, row: 2 }, // bottom-right
             ];
 
@@ -372,14 +387,14 @@
           case 10:
             const positions10 = [
               [0, 0],
-              [2, 0],
+              [2, 0.75],
               [4, 0],
               [0, 1],
               [4, 1],
               [0, 2],
               [4, 2],
               [0, 3],
-              [2, 3],
+              [2, 2.25],
               [4, 3],
             ];
 
@@ -466,6 +481,90 @@
                   ((row + 0.5) * (cellSize - 2 * padding)) / 4,
               });
             }
+            break;
+
+          case 13:
+            const positions13 = [
+              [0, 0],
+              [1.33, 0],
+              [2.67, 0],
+              [4, 0],
+              [0, 3],
+              [1.33, 3],
+              [2.67, 3],
+              [4, 3],
+              [0, 1],
+              [0, 2],
+              [4, 1],
+              [4, 2],
+            ];
+
+            for (let i = 0; i < positions13.length; i++) {
+              const [col, row] = positions13[i];
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((col + 0.5) * (cellSize - 2 * padding)) / 5,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((row + 0.5) * (cellSize - 2 * padding)) / 4,
+              });
+            }
+
+            // Add center dot (13th dot at center of 4x4 grid)
+            jitteredPoints.push({
+              name: group.names[12],
+              x: group.x,
+              y: group.y,
+            });
+            break;
+
+          case 14:
+            const positions14 = [
+              [0, 0],
+              [1.33, 0],
+              [2.67, 0],
+              [4, 0],
+              [0, 3],
+              [1.33, 3],
+              [2.67, 3],
+              [4, 3],
+              [0, 1],
+              [0, 2],
+              [4, 1],
+              [4, 2],
+              [2, 1],
+              [2, 2],
+            ];
+
+            for (let i = 0; i < positions14.length; i++) {
+              const [col, row] = positions14[i];
+              jitteredPoints.push({
+                name: group.names[i],
+                x:
+                  group.x -
+                  0.5 +
+                  padding +
+                  ((col + 0.5) * (cellSize - 2 * padding)) / 5,
+                y:
+                  group.y -
+                  0.5 +
+                  padding +
+                  ((row + 0.5) * (cellSize - 2 * padding)) / 4,
+              });
+            }
+
+            // Add center dot (13th dot at center of 4x4 grid)
+            // jitteredPoints.push({
+            //   name: group.names[12],
+            //   x: group.x,
+            //   y: group.y,
+            // });
             break;
 
           default:
